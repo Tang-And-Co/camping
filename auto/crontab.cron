@@ -1,0 +1,2 @@
+30 02 * * * /opt/lampp/bin/php /opt/lampp/htdocs/bu.22web.org/auto/anonym.php >> /opt/lampp/htdocs/bu.22web.org/auto/anonym.log
+15 02 * * * /opt/lampp/bin/php /opt/lampp/htdocs/bu.22web.org/auto/retard.php >> /opt/lampp/htdocs/bu.22web.org/auto/sauv.log
