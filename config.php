@@ -1,5 +1,6 @@
 <?php 
 define('ROOT', __DIR__);
+require_once ROOT . "/meteo/meteo.php";
 spl_autoload_register(function ($className) { // charge automatiquement toutes les classes contenu dans le dossier class
     $file = ROOT . '/class/' . $className . '.php';
     if (file_exists($file)) {
