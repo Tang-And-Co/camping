@@ -2,7 +2,7 @@
 define('ROOT', dirname(__DIR__));
 require_once ROOT . '/class/Database.php'; // on importe la classe gérant la base de données
 // on sauvegarde toutes les tables dans un fichier sql
-$tables = ["user", "livre", "emprunt", "reservation", "suggestion"]; // les différentes tables à sauvegarder
+$tables = ["user", "reservation"]; // les différentes tables à sauvegarder
 $return = ''; // variable qui contiendra l'entièreté du code sql
 foreach ($tables as $table) { // pour chaque table on la supprime si elle existe, on la créé et on y insert les données
     $return .= "DROP TABLE IF EXISTS `$table`;\n\n";
