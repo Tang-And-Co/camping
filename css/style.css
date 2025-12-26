@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --yellow1: #f7e062;
+    --yellow2: #d4b500;
+    --orange: #e06a09;
+    --white: #ffffff;
+    --black: #000000;
+    --gray1: #dbdbdb;
+    --gray2: #8d8d8d;
+    --green-dark: #0b490b;
+    --shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--gray1);
+    min-height: 100vh;
+}
+header {
+    background-color: var(--orange);
+}
+header .box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+header #item1 img {
+    height: 60px;
+    width: auto;
+}
+header #item2 h1 {
+    color: var(--green-dark);
+    font-size: 2.5rem;
+    text-align: center;
+}
+header #item3 #bouton_connexion {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--yellow1);
+    color: var(--black);
+    border-radius: 10px;
+    transition: var(--transition);
+    border: 2px solid var(--yellow1);
+}
+header #item3 #bouton_connexion:hover {
+    background: var(--yellow2);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+header .menu {
+    display: flex;
+    justify-content: center;
+    padding: 0 1.5rem;
+    background: var(--green-dark);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+header .menu a {
+    padding: 1rem 1.25rem;
+    color: var(--gray1);
+    font-weight: 500;
+    white-space: nowrap;
+    position: relative;
+    transition: var(--transition);
+}
+header .menu a:hover {
+    color: var(--orange);
+}
+header .menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--orange);
+    transition: var(--transition);
+}
+header .menu a:hover::after {
+    width: 80%;
+}
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--orange);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
