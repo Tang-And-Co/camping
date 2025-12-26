@@ -1,13 +1,19 @@
 <?php 
 require_once "config.php"; // importe toutes les classes
 $role = Session::get('role'); // récupère le role de l'utilisateur, si il n'est pas connecté : null
+$today = date('Y-m-d-H');
+$reponse = file_get_contents("meteo/cache/$today.json");
+$data = json_decode($reponse, true);
+$icon = $data['weather'][0]['icon'] ?? null;
+$temps = $data['weather'][0]['description'] ?? 'Indisponible';
+$temperature = round($data['main']['temp'], 0) ?? 'indisponible';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- pour que le site s'adapte aux petits écrans -->
-    <title>Camping</title>
+    <title>Tentations Côtières</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Librairie FontAwesome pour tous les icones -->
@@ -19,8 +25,19 @@ $role = Session::get('role'); // récupère le role de l'utilisateur, si il n'es
             <div id="item1">
                 <img src="img/logo.png" alt="logo Camping">
             </div>
+            <div id="item1-2">
+                <div class="meteo">
+                    <div class="weather">
+                        <span class="meteo-elem"><img src="https://openweathermap.org/img/wn/<?= $icon ?>@2x.png"></span>
+                        <span class="meteo-elem"><?= $temps ?></span>
+                    </div>
+                    <div class="temperature">
+                        Température : <?= $temperature ?> °C.
+                    </div>
+                </div>
+            </div>
             <div id="item2">
-                <h1>Camping</h1> 
+                <h1>Tentations Côtières</h1> 
             </div>
             <div id="item3">
                 <?php if(in_array($role, ['utilisateur', 'gestionnaire', 'admin'])): ?>

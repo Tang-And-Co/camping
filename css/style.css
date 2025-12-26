@@ -4,8 +4,7 @@
     box-sizing: border-box;
 }
 :root {
-    --yellow1: #f7e062;
-    --yellow2: #d4b500;
+    --yellow: #ffa600;
     --orange: #e06a09;
     --white: #ffffff;
     --gray1: #dbdbdb;
@@ -37,10 +36,33 @@ header #item1 img {
     height: 60px;
     width: auto;
 }
+header #item1-2 {
+    margin-left: -20rem;
+}
+.meteo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--yellow);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 15rem;
+    min-width: 250px;
+}
+.weather {
+    display: flex;
+    flex-direction: row;
+    margin: -1.75rem;
+}
+.meteo-elem {
+    margin: auto;
+}
 header #item2 h1 {
     color: var(--green-dark);
     font-size: 2.5rem;
-    text-align: center;
+    margin-left: -15rem;
 }
 header #item3 #bouton_connexion {
     display: inline-block;
@@ -99,12 +121,6 @@ header .menu a:hover::after {
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
-}
-.contenu {
-    flex: 1;
-    padding: 2rem 1.5rem;
-    background: var(--white);
-    min-height: 52.8vh;
 }
 .alert {
     padding: 1rem 1.5rem;
@@ -230,4 +246,28 @@ footer h4 {
 .close:hover {
     background: var(--gray1);
     color: var(--black);
+}
+.contenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--gray1);
+    min-height: 52.8vh;
+}
+.video-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 45vh;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    padding: 0.5rem;
+    background-color: var(--white);
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: -150%;
+    left: 0;
+    width: 100%;
+    height: 400%;
+    pointer-events: none;
 }
