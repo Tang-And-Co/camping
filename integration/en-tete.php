@@ -4,8 +4,19 @@ $role = Session::get('role'); // récupère le role de l'utilisateur, si il n'es
 $today = date('Y-m-d-H');
 $reponse = file_get_contents("meteo/cache/$today.json");
 $data = json_decode($reponse, true);
-$icon = $data['weather'][0]['icon'] ?? null;
-$weatherId = $data['weather'][0]['id'] ?? null;
+$weatherId = $data['weather'][0]['id'] ?? "na";
+$sunrise = $data['sys']['sunrise'];
+$sunset = $data['sys']['sunset'];
+$now = time();
+$isDay = ($now >= $sunrise && $now < $sunset);
+$period = $isDay ? 'day' : 'night';
+$weatherClass = match (true) {
+  $weatherId === 800 => 'weather-sun',
+  $weatherId >= 801 && $weatherId <= 804 => 'weather-cloud',
+  $weatherId >= 500 && $weatherId <= 531 => 'weather-rain',
+  $weatherId >= 200 && $weatherId <= 232 => 'weather-storm',
+  default => 'weather-default',
+};
 $temps = $data['weather'][0]['description'] ?? 'Indisponible';
 $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
 ?>
@@ -30,7 +41,7 @@ $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
             <div id="item1-2">
                 <div class="meteo">
                     <div class="weather">
-                        <span class="meteo-elem"><i class="wi wi-owm-<?= $weatherId ?>"></i></span>
+                        <span class="meteo-elem"><i class="wi wi-owm-<?= $period ?>-<?= $weatherId ?> <?= $weatherClass ?>"></i></span>
                         <span class="meteo-elem"><?= $temps ?></span>
                     </div>
                     <div class="temperature">

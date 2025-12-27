@@ -305,3 +305,35 @@ footer h4 {
     margin-top: 2rem;
     padding-inline-start: 3rem;
 }
+.weather-sun {
+    animation: sun-pulse 3s infinite ease-in-out;
+}
+.weather-cloud {
+    animation: cloud-drift 6s infinite ease-in-out;
+}
+.weather-rain {
+    animation: rain-fall 2s infinite ease-in-out;
+}
+.weather-storm {
+  animation: storm-flash 2s infinite ease-in-out;
+}
+@keyframes sun-pulse {
+    0%   { transform: scale(1); opacity: 0.95; }
+    50%  { transform: scale(1.08) rotate(15deg); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.95; }
+}
+@keyframes cloud-drift {
+    0%   { transform: translateX(3px); }
+    50%  { transform: translateX(-3px); }
+    100% { transform: translateX(3px); }
+}
+@keyframes rain-fall {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(2px); }
+    100% { transform: translateY(0); }
+}
+@keyframes storm-flash {
+  0% { opacity: 1; transform: none; }
+  15% { opacity: 0; transform: translateY(4px) rotate(5deg);}
+  30% { opacity: 1; transform: none; }
+}
