@@ -5,6 +5,7 @@ $today = date('Y-m-d-H');
 $reponse = file_get_contents("meteo/cache/$today.json");
 $data = json_decode($reponse, true);
 $icon = $data['weather'][0]['icon'] ?? null;
+$weatherId = $data['weather'][0]['id'] ?? null;
 $temps = $data['weather'][0]['description'] ?? 'Indisponible';
 $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
 ?>
@@ -17,6 +18,7 @@ $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Librairie FontAwesome pour tous les icones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css"> <!-- Librairie logo weather -->
     <script src="js/script.js"></script>
 </head>
 <body>
@@ -28,7 +30,7 @@ $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
             <div id="item1-2">
                 <div class="meteo">
                     <div class="weather">
-                        <span class="meteo-elem"><img src="https://openweathermap.org/img/wn/<?= $icon ?>@2x.png"></span>
+                        <span class="meteo-elem"><i class="wi wi-owm-<?= $weatherId ?>"></i></span>
                         <span class="meteo-elem"><?= $temps ?></span>
                     </div>
                     <div class="temperature">
@@ -49,7 +51,9 @@ $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
         </div>
         <div class = "menu"> <!-- barre de navigation -->
             <a class="onglet" href="index.php">Accueil</a>
-            <a class="onglet" href="info.php">Informations</a>
+            <a class="onglet" href="locations.php">Locations</a>
+            <a class="onglet" href="emplacements.php">Emplacements</a>
+            <a class="onglet" href="reserver.php">Réserver</a>
         </div>
     </header>
     <div class="contenu">
