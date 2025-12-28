@@ -26,7 +26,7 @@ $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- pour que le site s'adapte aux petits écrans -->
     <title>Tentations Côtières</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="icon" type="image/png" href="<?= Database::query("SELECT url FROM image WHERE nom = 'logo'")[0]["url"] ?>">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Librairie FontAwesome pour tous les icones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css"> <!-- Librairie logo weather -->
@@ -36,9 +36,7 @@ $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
     <header> <!-- banière du haut du site -->
         <div class="box">
             <div id="item1">
-                <img src="img/logo.png" alt="logo Camping">
-            </div>
-            <div id="item1-2">
+                <img src="<?= Database::query("SELECT url FROM image WHERE nom = 'logo'")[0]["url"] ?>" alt="logo Tentations Côtières">
                 <div class="meteo">
                     <div class="weather">
                         <span class="meteo-elem"><i class="wi wi-owm-<?= $period ?>-<?= $weatherId ?> <?= $weatherClass ?>"></i></span>
@@ -60,6 +58,9 @@ $temperature = round($data['main']['temp'], 0) ?? 'indisponible';
                 <?php endif; ?>
             </div>
         </div>
+        <button class="menu-toggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class = "menu"> <!-- barre de navigation -->
             <a class="onglet" href="index.php">Accueil</a>
             <a class="onglet" href="locations.php">Locations</a>
